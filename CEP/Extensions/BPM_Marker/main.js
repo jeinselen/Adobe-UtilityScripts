@@ -31,11 +31,17 @@
 			alert("Please enter a valid BPM (positive number).");
 			return;
 		}
-		if (isNaN(primaryIndex) || primaryIndex < 0 || primaryIndex > 7 ||
-			isNaN(accentIndex)  || accentIndex  < 0 || accentIndex  > 7) {
-				alert("Marker color indices must be between 0 and 7.");
-				return;
-			}
+		if (
+			isNaN(primaryIndex) ||
+			primaryIndex < 0 ||
+			primaryIndex > 7 ||
+			isNaN(accentIndex) ||
+			accentIndex < 0 ||
+			accentIndex > 7
+		) {
+			alert("Marker color indices must be between 0 and 7.");
+			return;
+		}
 		if (!accentFreq || accentFreq < 1) accentFreq = 1;
 		
 		// Build a robust evalScript call. Ensure decimal uses '.' to avoid locale issues.
@@ -52,7 +58,9 @@
 				if (n === 0) {
 					alert("No markers were added. Make sure a timeline clip is selected.");
 				} else {
-					alert(`Success: ${n} marker(s) added.`);
+					// Only show success alert if no issues were reported by ExtendScript
+					// (ExtendScript will show its own alert if there were issues)
+					alert(`Success: ${n} marker(s) created.`);
 				}
 			} else {
 				// If ExtendScript threw an alert with an error, res may be empty/undefined.
