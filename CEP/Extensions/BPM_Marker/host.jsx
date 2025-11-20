@@ -45,7 +45,7 @@ function createBPMMarkersOnSelection(bpm, primaryColorIndex, accentColorIndex, a
 				// Determine which color to use (1-based beat index)
 				var beatIndex = beatNum + 1;
 				var colorIndex = primaryColorIndex;
-				if (accentFrequency > 0 && (beatIndex % accentFrequency === 0)) {
+				if (accentFrequency > 0 && ((beatIndex - 1) % accentFrequency === 0)) {
 					colorIndex = accentColorIndex;
 				}
 
